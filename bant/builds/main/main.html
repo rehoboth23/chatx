@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatX</title>
+    <link rel="icon" href="../images/chatx.png">
+
+    <!--    my css-->
+    <link type="text/css" rel="stylesheet" href="styles.css">
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <!--    font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <main >
+        <div id="chat-box" class="container .rounded">
+            <div class="row" id="NavBar">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light col-12">
+
+                  <a class="navbar-brand" href="#">
+                      <img src="../images/chatx.png" alt="logo" id="logo" />
+                      ChatX
+                  </a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <form class="form-inline my-2 my-lg-0">
+                      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                      <ul class="navbar-nav ml-auto">
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Logout</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link btn btn-primary" href="#" style="color: yellow">Profile</a>
+                          </li>
+<!--                          <li class="nav-item dropdown">-->
+<!--                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                              Dropdown-->
+<!--                            </a>-->
+<!--                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                                <a class="dropdown-item" href="#">Action</a>-->
+<!--                                <a class="dropdown-item" href="#">Another action</a>-->
+<!--                                <div class="dropdown-divider"></div>-->
+<!--                                <a class="dropdown-item" href="#">Something else here</a>-->
+<!--                            </div>-->
+<!--                          </li>-->
+                      </ul>
+                  </div>
+                </nav>
+            </div>
+            <div class="row" style="height: 100%">
+                <div id="chatList" class="col-3 hidden-md">
+                    <div class="row mb-2 mt-2">
+                        <h3 class="m-auto">Messages</h3>
+                    </div>
+
+                    <a href="#" class="row conversation">
+                        <div class="toon-holder">
+                            <img src="../images/toon.jpeg" alt="toon-img" class="toon rounded-circle"/>
+                            <div class="status-icon rounded-circle" style="background-color: red;"></div>
+                        </div>
+                        <div class="message-info-holder">
+                            <p class="message-info">
+                                <span class="row"><b class="col-8">Contact 1</b><span class="col-4">Time</span></span>
+                                <span class="row"><span class="col">Contact email</span></span>
+                            </p>
+                        </div>
+                    </a><hr/>
+                    <a href="#" class="row conversation">
+                        <div class="toon-holder">
+                            <img src="../images/kilua.jpeg" alt="toon-img" class="toon rounded-circle"/>
+                            <div class="status-icon rounded-circle" style="background-color: red;"></div>
+                        </div>
+                        <div class="message-info-holder">
+                            <p class="message-info">
+                                <span class="row"><b class="col-8">Contact 2</b><span class="col-4">Time</span></span>
+                                <span class="row"><span class="col">Contact email</span></span>
+                            </p>
+                        </div>
+                    </a><hr/>
+                    <a  href="#" class="row conversation">
+                        <div class="toon-holder">
+                            <img src="../images/tanjiro.jpeg" alt="toon-img" class="toon rounded-circle"/>
+                            <div class="status-icon rounded-circle" style="background-color: red;"></div>
+                        </div>
+                        <div class="message-info-holder">
+                            <p class="message-info">
+                                <span class="row"><b class="col-8">Contact 3</b><span class="col-4">Time</span></span>
+                                <span class="row"><span class="col">Contact email</span></span>
+                            </p>
+                        </div>
+                    </a><hr/>
+                </div>
+                <div id="currentChat" class="col-9">
+                    <div id="messageSpace">
+                        <div class="row incoming msg-holder mb-2">
+                            <div class="msg-toon-holder">
+                                <img src="../images/kilua.jpeg" alt="toon-img" class="msg-toon rounded-circle"/>
+                            </div>
+                            <div class="text-holder">
+                                <p class="rounded-lg">Neque porro quisquam est qui dolorem ipsum quia ...
+                                    <br/><span class="message-time">Aug 3, 5:28</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row outgoing msg-holder mb-2 justify-content-end ml-auto">
+                            <div class="text-holder">
+                                <p class="rounded-left">Neque porro quisquam est qui dolorem
+                                    ipsum quia dolor sit amet, consectetur, adipisci velit...
+                                    <br/><span class="message-time">Aug 3, 5:28</span>
+                                </p>
+                            </div>
+                            <div class="msg-toon-holder">
+                                <img src="../images/tanjiro.jpeg" alt="toon-img" class="msg-toon rounded-circle"/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" id="formHolder">
+                        <form class="form-inline" id="messageForm">
+                            <textarea class="form-control" placeholder="New Message..." id="memo"
+                                      name="memo" cols="52" rows="1" aria-label="New Message">
+                            </textarea>
+                            <button class="btn btn-success" id="msgBtn">
+                                <span><i class="fa fa-paper-plane fa-2x" aria-hidden="true" ></i></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+</html>

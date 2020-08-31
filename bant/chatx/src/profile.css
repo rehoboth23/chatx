@@ -1,0 +1,61 @@
+#profile body {
+    min-width: 600px;
+}
+
+#profile main {
+    position: absolute;
+    background-image: linear-gradient(to bottom right, red, yellow, red);
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+}
+#profile #chat-box {
+    top: 50%;
+    transform: translate(0, 9%);
+    width: 75%;
+    height: 75%;
+}
+
+#profile #logo {
+    max-height: 50px;
+    max-width: 50px;
+}
+#profile .imgHolder {
+    max-height: 250px;
+    width: auto;
+}
+#profile .imgHolder img {
+    max-height: 250px;
+    width: auto;
+}
+#profile .tab_btn {
+    width: 200px;
+}
+#profile .nav-item {
+    padding: 2px 5px 2px 5px;
+}
+#profile #cover {
+    background-color: blue;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#profile .info-holder {
+    overflow: scroll;
+}
+button {
+    background: rgba(0, 0, 0, 0);
+    border: 0;
+}
+#profileImg {
+    display: grid;
+    grid-template-rows: repeat(10, 10%);
+    grid-template-columns: repeat(10, 10%);
+}
+#profileImg button {
+    grid-row: 7/8;
+    grid-column: 5/6;
+    color: black;
+}
+#profileImg button:hover {
+    color: red;
+}

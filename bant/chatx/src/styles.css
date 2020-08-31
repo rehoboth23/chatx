@@ -1,0 +1,185 @@
+#chatBody{
+    min-width: 600px;
+}
+#chatBody main {
+    position: absolute;
+    background-image: linear-gradient(to bottom right, red, yellow, red);
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    overflow: scroll;
+}
+#chat-box {
+    top: 50%;
+    transform: translate(0, 9%);
+    width: 75%;
+    height: 75%;
+}
+
+#logo {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+#chatList {
+    height: 100%;
+    background-color: #d4e4ec;
+    overflow: scroll;
+    border-right: 2px dashed black;
+    overflow: scroll;
+}
+#chatList .row h3 {
+    font-size: 25px;
+}
+
+#currentChat {
+    height: 100%;
+    background-color: #d4e4ec;
+}
+#messageSpace {
+    height: 91%;
+    padding-top: 5px;
+    overflow: scroll;
+}
+#messageSpace .col-6 {
+    height: 100%;
+}
+#messageForm {
+    width: 100%;
+    height: 100%;
+}
+#formHolder {
+    height: 9%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+#memo {
+    height: 100%;
+    max-width: 90%;
+    width: 90%;
+    min-width: 75%;
+
+}
+#msgBtn {
+    height: 100%;
+    max-width: 25%;
+    width: 10%;
+}
+
+.conversation {
+    height: 70px;
+    padding-bottom: 0;
+}
+.conversation:hover {
+    text-decoration: none;
+    background-color: #b4e6ee;
+}
+.conversation b,
+.conversation a,
+.conversation p,
+.conversation div {
+    pointer-events: none;
+}
+
+.message-info-holder {
+    width: 65%;
+    height: 100%;
+}
+.message-info {
+    width: 100%;
+    font-size: 1vw;
+    padding: 20px 5px 0 10px;
+    color: black;
+}
+.message-info .col-4 {
+    text-align: center;
+}
+
+.toon {
+    max-width: 60px;
+    max-height: 60px;
+    min-width: 60px;
+    min-height: 60px;
+    grid-row-start: 2;
+    margin-left: 5px;
+}
+.msg-toon {
+    max-width:60px;
+    max-height: 60px;
+    min-width: 20px;
+    min-height: 20px;
+}
+
+.status-icon {
+    display: inline;
+    height: 10px;
+    width: 10px;
+    grid-column-start: 7;
+    grid-row-start: 7;
+}
+
+.toon-holder {
+    display: grid;
+    width: 30%;
+    max-height: 85px;
+    grid-template-columns: repeat(10, 8.5px);
+    grid-template-rows: repeat(10, 8.5px);
+}
+
+.msg-holder {
+    max-width: 70%;
+}
+
+.outgoing.msg-holder{
+    margin-right: 10px;
+}
+.incoming.msg-holder{
+    margin-left: 0;
+}
+
+.text-holder {
+    width: auto;
+    padding: 10px 10px 0 10px;
+    background-color: white;
+}
+.msg-toon-holder {
+    width: 15%;
+}
+.outgoing .msg-toon-holder img {
+    float: right;
+}
+.outgoing .message-time {
+    display: block;
+    width: 100%;
+    text-align: right;
+}
+
+@media (max-width: 1000px) {
+    .text-holder {
+        width: 85%;
+    }
+    .msg-toon-holder {
+        width: 15%;
+    }
+}
+
+@media (min-width: 1220px) {
+    .text-holder {
+        width: 85%;
+    }
+    .msg-toon-holder {
+        width: 10%;
+    }
+    .message-info-holder {
+        width: 70%;
+    }
+    .toon-holder {
+        width: 30%;
+    }
+    .message-info {
+        padding: 20px 5px 0 0;
+
+    }
+}

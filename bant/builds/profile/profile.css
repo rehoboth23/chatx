@@ -1,0 +1,45 @@
+body {
+    min-width: 600px;
+}
+
+main {
+    position: absolute;
+    background-image: linear-gradient(to bottom right, red, yellow, red);
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+}
+#chat-box {
+    top: 50%;
+    transform: translate(0, 9%);
+    width: 75%;
+    height: 75%;
+}
+
+#logo {
+    max-height: 50px;
+    max-width: 50px;
+}
+.imgHolder {
+    max-height: 250px;
+    width: auto;
+}
+.imgHolder img {
+    max-height: 250px;
+    width: auto;
+}
+.tab_btn {
+    width: 200px;
+}
+.nav-item {
+    padding: 2px 5px 2px 5px;
+}
+#cover {
+    background-color: red;
+    background-image: url("../images/default.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.info-holder {
+    overflow: scroll;
+}
