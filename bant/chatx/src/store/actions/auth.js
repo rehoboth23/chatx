@@ -1,6 +1,5 @@
 import * as actionTypes from './actionTypes';
 const loc = window.location
-console.log(loc)
 const auth_url = `${loc.origin}/authenticate/`
 // const auth_url = `http://localhost:8000/authenticate/`
 
