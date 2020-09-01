@@ -12,3 +12,4 @@ mydatabase-journal
 bant/media
 nginx.conf
 supervisor.conf
+venv

@@ -151,7 +151,6 @@ class ChatBox extends Component {
         }).then(this.handleErr)
             .then(data => {
                 if (this._isMounted) {
-                    console.log(data)
                     this.setState({
                         profilePicUrl: data['profile_pic'],
                          // profilePicUrl: `http://localhost:8000${data['profile_pic']}`,
@@ -204,7 +203,6 @@ class ChatBox extends Component {
     makeChat(chat){
         const date = new Date(chat.date)
         const pic_url = this.state.rooms[this.state.activeRoom][`other_profilepic`]
-        console.log(this.state.profilePicUrl)
         if(chat.User === this.state.user){
             const props = {
                 'memo': chat.memo,

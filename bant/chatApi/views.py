@@ -18,14 +18,13 @@ from rest_framework import viewsets, status
 
 
 def redirectview(request):
-    print("in")
     return redirect("/auth")
-
 
 # Create your views here.
 class UserViewSet(APIView):
     def get(self, request):
         try:
+            print("in")
             raw_token = request.headers['Authorization'].split(" ")[1]
             user_id = Token.objects.get(key=raw_token).user_id
             user = ChatUser.objects.get(id=user_id)

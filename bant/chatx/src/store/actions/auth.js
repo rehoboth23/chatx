@@ -1,7 +1,8 @@
 import * as actionTypes from './actionTypes';
 const loc = window.location
-// const auth_url = 'http://127.0.0.1:8000/authenticate/'
-const auth_url = `/authenticate/`
+console.log(loc)
+const auth_url = `${loc.origin}/authenticate/`
+// const auth_url = `http://localhost:8000/authenticate/`
 
 export const authStart = () => {
     return {
@@ -40,7 +41,6 @@ export const checkAuthTimeout = expirationTime => {
 }
 
 export const authLogin = (email, password) => {
-    console.log(auth_url)
     return dispatch => {
         dispatch(authStart());
         fetch(auth_url, {

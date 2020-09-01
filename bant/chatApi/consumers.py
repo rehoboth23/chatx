@@ -5,6 +5,9 @@ from rest_framework.authtoken.models import Token
 from .models import ChatUser, Chat, ChatRoom
 
 
+# PRELINK = "http://localhost:8000"
+PRELINK = "http://www.rehoboth.link"
+
 class MessageConsumer(AsyncConsumer):
     async def websocket_connect(self, event):
         self.email = ""
@@ -173,8 +176,9 @@ class MessageConsumer(AsyncConsumer):
 
     @database_sync_to_async
     def get_response(self, info, token):
+        print("in")
         raw_token = "Token " + str(token).strip()
-        res = requests.post(f"/chats/",
+        res = requests.post(f"{PRELINK}/chats/",
                             headers={"Authorization": raw_token},
                             data=json.dumps({
                                 "User": info["User"],
@@ -186,7 +190,7 @@ class MessageConsumer(AsyncConsumer):
     @database_sync_to_async
     def update_profile(self, token, context):
         raw_token = "Token " + str(token).strip()
-        res = requests.put(f"/authenticate/",
+        res = requests.put(f"{PRELINK}/authenticate/",
                             headers={"Authorization": raw_token},
                             data=json.dumps(context))
         return res

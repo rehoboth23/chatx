@@ -30,6 +30,7 @@ urlpatterns = [
     path('', include('chatApi.urls')),
     path('chat/', TemplateView.as_view(template_name="index.html")),
     path('auth/', TemplateView.as_view(template_name="index.html")),
+    path('profile/', TemplateView.as_view(template_name="index.html")),
     url(r'^rest-auth/', include('rest_auth.urls')),
     path("login/", views.obtain_auth_token, name="login-token"),
 ]

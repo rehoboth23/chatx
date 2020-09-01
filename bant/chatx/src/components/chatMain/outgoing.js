@@ -5,7 +5,6 @@ function Outgoing(props){
     const data = props.props
     // const picurl = `http://localhost:8000${data['pic_url']}`
     const picurl = `${data['pic_url']}`
-    console.log(picurl)
     return(
         <div className="row outgoing msg-holder mb-2 justify-content-end ml-auto">
             <div className="text-holder">
