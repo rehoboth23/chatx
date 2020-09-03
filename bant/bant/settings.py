@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'tfjthk(e#g^%#_^v%au6()5s*rh(w-2-ngd3w%jjd@1mxs9mvh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     # api and rest
     'rest_framework',
     'rest_framework.authtoken',
+
+    # storage
+    'storages',
 
     # async requests
     'channels',
@@ -175,3 +178,14 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:8000",
     'http://3.14.83.234:8000',
 ]
+
+#S3 BUCKETS CONFIG
+'''
+AWS_ACCESS_KEY_ID = 'AKIAVJRAVJHRCP7WJHCE'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'chatx-bucket'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+'''

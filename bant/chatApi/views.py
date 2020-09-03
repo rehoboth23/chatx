@@ -16,6 +16,8 @@ from .models import ChatRoom, Chat
 from .serializers import ChatSerializer, ChatRoomSerializer, UserSerializer
 from rest_framework import viewsets, status
 
+# PRELINK = "http://localhost:8000"
+PRELINK = "http://www.rehoboth.link"
 
 def redirectview(request):
     return redirect("/auth")
@@ -41,7 +43,7 @@ class UserViewSet(APIView):
             if form.is_valid():
                 user = form.save()
                 user.changeState()
-                response = requests.post("http://localhost:8000/login/",
+                response = requests.post(f"{PRELINK}/login/",
                                          data={'username': body['email'], 'password': body['password1']})
 
                 if response.status_code == 200:
@@ -60,7 +62,7 @@ class UserViewSet(APIView):
                 errors = {'email': emailErrors, 'password': passwordErrors}
                 return Response(errors, status=status.HTTP_400_BAD_REQUEST)
         except KeyError:
-            response = requests.post("http://localhost:8000/login/",
+            response = requests.post(f"{PRELINK}/login/",
                                      data={'username': body['email'], 'password': body['password']})
             if response.status_code == 200:
                 token = json.loads(response.content)["token"]

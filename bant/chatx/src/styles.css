@@ -9,77 +9,76 @@
     margin: auto;
     overflow: scroll;
 }
-#chat-box {
+#chatBody #chat-box {
     top: 50%;
     transform: translate(0, 9%);
     width: 75%;
     height: 75%;
 }
 
-#logo {
+#chatBody #logo {
     max-height: 50px;
     max-width: 50px;
 }
 
-#chatList {
+#chatBody #chatList {
     height: 100%;
     background-color: #d4e4ec;
     overflow: scroll;
     border-right: 2px dashed black;
-    overflow: scroll;
 }
-#chatList .row h3 {
+#chatBody #chatList .row h3 {
     font-size: 25px;
 }
 
-#currentChat {
+#chatBody #currentChat {
     height: 100%;
     background-color: #d4e4ec;
 }
-#messageSpace {
+#chatBody #messageSpace {
     height: 91%;
     padding-top: 5px;
     overflow: scroll;
 }
-#messageSpace .col-6 {
+#chatBody #messageSpace .col-6 {
     height: 100%;
 }
-#messageForm {
+#chatBody #messageForm {
     width: 100%;
     height: 100%;
 }
-#formHolder {
+#chatBody #formHolder {
     height: 9%;
     width: 100%;
     position: absolute;
     bottom: 0;
 }
 
-#memo {
+#chatBody #memo {
     height: 100%;
     max-width: 90%;
     width: 90%;
     min-width: 75%;
 
 }
-#msgBtn {
+#chatBody #msgBtn {
     height: 100%;
     max-width: 25%;
     width: 10%;
 }
 
-.conversation {
+#chatBody .conversation {
     height: 70px;
     padding-bottom: 0;
 }
-.conversation:hover {
+#chatBody .conversation:hover {
     text-decoration: none;
     background-color: #b4e6ee;
 }
-.conversation b,
-.conversation a,
-.conversation p,
-.conversation div {
+#chatBody .conversation b,
+#chatBody .conversation a,
+#chatBody .conversation p,
+#chatBody .conversation div {
     pointer-events: none;
 }
 
