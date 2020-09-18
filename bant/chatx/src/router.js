@@ -34,7 +34,7 @@ class MyRouter extends Component {
 
 const mapStateToProps = state => {
     const loc = window.location
-    const proc = loc.protocol === "http:"? "ws:": "wss"
+    const proc = loc.protocol === "http:"? "ws:": "wss:"
     let endpoint = `${proc}//${loc.host}:8000/`
     // let endpoint = `${proc}//${loc.host}`
     // let endpoint = `${proc}//localhost:8000/`
