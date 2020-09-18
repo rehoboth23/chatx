@@ -2,6 +2,7 @@ from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
 from .views import ChatViewSet, ChatRoomView, UserViewSet
 from rest_framework.authtoken import views
+from .consumers import MessageConsumer
 
 CHAT_ROUTER = DefaultRouter()
 CHAT_ROUTER.register('chats', ChatViewSet, basename='chats')

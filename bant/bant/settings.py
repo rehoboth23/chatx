@@ -54,6 +54,9 @@ INSTALLED_APPS = [
 
     # react
     'corsheaders',
+
+    #simulate ssl
+    "sslserver",
 ]
 
 MIDDLEWARE = [
