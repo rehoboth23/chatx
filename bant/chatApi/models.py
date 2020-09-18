@@ -173,6 +173,6 @@ class Chat(models.Model):
                     matches.append({
                         'name': user.get_name(),
                         'email': user.get_email(),
-                        'pic_url': "media/" + str(user.profile_pic)
+                        'pic_url': "static/" + str(user.profile_pic)
                     })
         return matches

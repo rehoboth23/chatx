@@ -5,8 +5,7 @@ import requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.html import strip_tags
 from rest_framework.authtoken.models import Token
-
-from bant.settings import AWS_STORAGE_BUCKET_NAME
+from bant.settings import AWS_STORAGE_BUCKET_NAME, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_S3_REGION_NAME
 from .forms import SignUpForm
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -94,16 +93,17 @@ class UserViewSet(APIView):
                 try:
                     email = user.get_email().replace("@", "-").replace(".", "-")
                     remote_filename = f"profile-pics/{email}.{data['profilePicExtension']}"
-                    local_filename = f"media/profile-pics/{email}.{data['profilePicExtension']}"
+                    # local_filename = f"media/profile-pics/{email}.{data['profilePicExtension']}"
+                    local_filename = f"/home/ubuntu/chatx/bant/{email}.{data['profilePicExtension']}"
                     file = open(local_filename, "wb+")
                     content = data['profilePicData'].split(";")[1]
                     image_encoded = content.split(',')[1]
                     body = base64.decodebytes(image_encoded.encode('utf-8'))
                     file.write(body)
                     file.close()
-                    s3 = boto3.client('s3')
+                    s3 = boto3.client('s3', region_name=AWS_S3_REGION_NAME, aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
                     with open(local_filename, "rb") as f:
-                        s3.upload_fileobj(f, AWS_STORAGE_BUCKET_NAME, remote_filename)
+                        s3.upload_fileobj(f, AWS_STORAGE_BUCKET_NAME, f"static/{remote_filename}")
                     os.remove(local_filename)
                     user.set_pic(f"{remote_filename}")
                 except:
@@ -112,7 +112,6 @@ class UserViewSet(APIView):
             user.save()
             serializer = UserSerializer(user)
             return Response(serializer.data, status=status.HTTP_200_OK)
-            # return Response(status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request):
         return Response(status=status.HTTP_400_BAD_REQUEST)
