@@ -230,6 +230,7 @@ class ChatBox extends Component {
                 'email': item['email'],
                 'contact': item['name'],
                 'pic_url': item['pic_url'],
+
                 "select": this.selectSearchItem,
             }
         return <span key={item['email']}><SearchResult props={props}/></span>
