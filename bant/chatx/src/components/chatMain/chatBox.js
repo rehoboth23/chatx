@@ -182,6 +182,7 @@ class ChatBox extends Component {
 
     makeConversation(name) {
         const room = this.state.rooms[name]
+        console.log(room)
         if(room) {
             const date = new Date(room.date)
             const props = {
@@ -202,7 +203,12 @@ class ChatBox extends Component {
     }
     makeChat(chat){
         const date = new Date(chat.date)
-        const pic_url = this.state.rooms[this.state.activeRoom][`other_profilepic`]
+        let pic_url = null
+        try {
+            pic_url = this.state.rooms[this.state.activeRoom][`other_profilepic`]
+        }catch (e){
+            console.log(e)
+        }
         if(chat.User === this.state.user){
             const props = {
                 'memo': chat.memo,
@@ -360,7 +366,7 @@ class ChatBox extends Component {
                                 </div>
 
                                 {
-                                    this.state.activeRoom || this.state.searchItem
+                                    this.state.activeRoom.length > 0 || this.state.searchItem.length > 0
                                         ?
                                     <div className="row" id="formHolder">
                                         <form className="form-inline" id="messageForm" onSubmit={this.handleSubmit}>

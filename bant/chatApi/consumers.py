@@ -176,7 +176,6 @@ class MessageConsumer(AsyncConsumer):
 
     @database_sync_to_async
     def get_response(self, info, token):
-        print("in")
         raw_token = "Token " + str(token).strip()
         res = requests.post(f"{PRELINK}/chats/",
                             headers={"Authorization": raw_token},

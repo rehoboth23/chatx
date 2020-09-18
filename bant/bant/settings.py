@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -28,7 +27,6 @@ DEBUG = False
 ALLOWED_HOSTS = ["*"]
 
 AUTH_USER_MODEL = 'chatApi.ChatUser'
-
 
 # Application definition
 
@@ -54,16 +52,14 @@ INSTALLED_APPS = [
     # mine
     'chatApi',
 
-    #react
+    # react
     'corsheaders',
 ]
-
-CSRF_COOKIE_SECURE=False
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -81,7 +77,6 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'chatx/build')
         ],
         'APP_DIRS': True,
@@ -103,7 +98,6 @@ REST_FRAMEWORK = {
     )
 }
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -113,7 +107,6 @@ DATABASES = {
         'NAME': 'mydatabase',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -133,7 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -147,9 +139,26 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+
+# S3 BUCKETS CONFIG
+# export AWS_ACCESS_KEY_ID=AKIAVJRAVJHRH347TIDA
+# export AWS_SECRET_ACCESS_KEY=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
+# AWS_ACCESS_KEY_ID='AKIAVJRAVJHRH347TIDA'
+# AWS_SECRET_ACCESS_KEY='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'
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = "test-mykc-bucket"
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_LOCATION = 'static'
+
+AWS_S3_REGION_NAME = 'us-east-2'  # change to your bucket region
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # All settings common to all environments
 STATIC_URL = '/static/'
@@ -176,16 +185,4 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
     "http://localhost:8000",
-    'http://3.14.83.234:8000',
 ]
-
-#S3 BUCKETS CONFIG
-'''
-AWS_ACCESS_KEY_ID = 'AKIAVJRAVJHRCP7WJHCE'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'chatx-bucket'
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-'''

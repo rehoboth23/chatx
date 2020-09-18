@@ -75,7 +75,6 @@ class ChatUser(AbstractUser):
         try:
             cleaned_path = img.split("media")[1][1:]
             self.profile_pic = cleaned_path
-            print(cleaned_path)
         except:
             self.profile_pic = img
             self.save()

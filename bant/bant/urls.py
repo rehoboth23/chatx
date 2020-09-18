@@ -19,7 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken import views
-from .settings import MEDIA_ROOT, MEDIA_URL, STATICFILES_DIRS, STATIC_URL
+from .settings import MEDIA_ROOT, MEDIA_URL, STATICFILES_DIRS, STATIC_URL, STATIC_ROOT, DEBUG
 from django.views.generic import TemplateView
 from chatApi.views import redirectview
 
@@ -36,4 +36,7 @@ urlpatterns = [
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
-urlpatterns += static(STATIC_URL, document_root=STATICFILES_DIRS)
+if DEBUG:
+    urlpatterns += static(STATIC_URL, document_root=STATICFILES_DIRS)
+else:
+    urlpatterns += static(STATIC_URL, document_root=STATIC_ROOT)

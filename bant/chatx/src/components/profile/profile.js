@@ -23,7 +23,7 @@ class Profile extends Component {
             backup: {},
             changing: false,
         }
-
+        this.dev = false
         // this.user_url = 'http://localhost:8000/authenticate/'
         this.user_url = `/authenticate/`
         this._isMounted = false
@@ -65,10 +65,9 @@ class Profile extends Component {
         }).then(this.handleErr)
            .then(data => {
                if(this._isMounted) {
-
                    this.setState({
-                       profilePicUrl: `http://localhost:8000${data['profile_pic']}`,
-                       coverUrl: `url(http://localhost:8000${data['cover_pic']})`,
+                       profilePicUrl: `${data['profile_pic']}`,
+                       coverUrl: `${data['cover_pic']}`,
                        name: data['name'],
                        email: data['email'],
                        age: data['age']?data['age']:"",
@@ -134,7 +133,9 @@ class Profile extends Component {
     }
 
     getFile() {
-        this.setState({backup: this.state})
+        if(!this.state.changing){
+            this.setState({backup: this.state, changing: true})
+        }
         // fileInput is an HTMLInputElement: <input type="file" id="myfileinput" multiple>
         let fileInput = document.getElementById("profileUpload");
 

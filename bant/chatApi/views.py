@@ -1,11 +1,12 @@
 import base64
-import codecs
+import os
 import json
 import requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.html import strip_tags
-from pip._internal import req
 from rest_framework.authtoken.models import Token
+
+from bant.settings import AWS_STORAGE_BUCKET_NAME
 from .forms import SignUpForm
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -15,18 +16,18 @@ from .models import ChatUser
 from .models import ChatRoom, Chat
 from .serializers import ChatSerializer, ChatRoomSerializer, UserSerializer
 from rest_framework import viewsets, status
+import boto3
+from .consumers import PRELINK
 
-# PRELINK = "http://localhost:8000"
-PRELINK = "http://www.rehoboth.link"
 
 def redirectview(request):
     return redirect("/auth")
+
 
 # Create your views here.
 class UserViewSet(APIView):
     def get(self, request):
         try:
-            print("in")
             raw_token = request.headers['Authorization'].split(" ")[1]
             user_id = Token.objects.get(key=raw_token).user_id
             user = ChatUser.objects.get(id=user_id)
@@ -92,14 +93,19 @@ class UserViewSet(APIView):
             if data['profilePicData'] and data['profilePicExtension']:
                 try:
                     email = user.get_email().replace("@", "-").replace(".", "-")
-                    filename = f"media/profile-pics/{email}.{data['profilePicExtension']}"
-                    file = open(filename, "wb+")
+                    remote_filename = f"profile-pics/{email}.{data['profilePicExtension']}"
+                    local_filename = f"media/profile-pics/{email}.{data['profilePicExtension']}"
+                    file = open(local_filename, "wb+")
                     content = data['profilePicData'].split(";")[1]
                     image_encoded = content.split(',')[1]
                     body = base64.decodebytes(image_encoded.encode('utf-8'))
                     file.write(body)
                     file.close()
-                    user.set_pic(filename)
+                    s3 = boto3.client('s3')
+                    with open(local_filename, "rb") as f:
+                        s3.upload_fileobj(f, AWS_STORAGE_BUCKET_NAME, remote_filename)
+                    os.remove(local_filename)
+                    user.set_pic(f"{remote_filename}")
                 except:
                     pass
 
@@ -220,7 +226,7 @@ class ChatRoomView(viewsets.ViewSet):
                 room_data["other_name"] = get_object_or_404(ChatUser, email=other).get_name()
                 room_data["other_email"] = get_object_or_404(ChatUser, email=other).get_email()
                 room_data["other_status"] = get_object_or_404(ChatUser, email=other).status()
-                room_data["other_profilepic"] = "media/" + str(get_object_or_404(ChatUser, email=other).profile_pic)
+                room_data["other_profilepic"] = "https://test-mykc-bucket.s3.us-east-2.amazonaws.com/static/" + str(get_object_or_404(ChatUser, email=other).profile_pic)
             try:
                 room_data["date"] = get_object_or_404(Chat, id=int(room.mostRecent)).date
             except:

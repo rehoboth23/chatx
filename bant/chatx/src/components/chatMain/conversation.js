@@ -4,7 +4,7 @@ const date_handler = require("../../dateHandler")
 function Conversation(props){
     const data = props.props
     // const picurl = `http://localhost:8000/${data['pic_url']}`
-    const picurl = `/${data['pic_url']}`
+    const picurl = `${data['pic_url']}`
     const statusStyle = status => {
         if(!status){
             return( {"backgroundColor" : "red"})

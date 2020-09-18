@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import axios from 'axios'
 const loc = window.location
 const auth_url = `${loc.origin}/authenticate/`
 // const auth_url = `http://localhost:8000/authenticate/`
