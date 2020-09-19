@@ -182,7 +182,6 @@ class ChatBox extends Component {
 
     makeConversation(name) {
         const room = this.state.rooms[name]
-        console.log(room)
         if(room) {
             const date = new Date(room.date)
             const props = {

@@ -3,7 +3,7 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 from channels.security.websocket import AllowedHostsOriginValidator
 from chatApi import routing
-
+from chatApi.consumers import MessageConsumer
 
 # application = ProtocolTypeRouter({
 #
@@ -17,7 +17,7 @@ from chatApi import routing
 #         )
 #     )
 # })
-
+#
 application = ProtocolTypeRouter({
     # (http->django views is added by default)
     'websocket': AuthMiddlewareStack(

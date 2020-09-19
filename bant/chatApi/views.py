@@ -16,7 +16,7 @@ from .models import ChatRoom, Chat
 from .serializers import ChatSerializer, ChatRoomSerializer, UserSerializer
 from rest_framework import viewsets, status
 import boto3
-from .consumers import PRELINK
+from .consumers import PRELINK, IN_PROD
 
 
 def redirectview(request):
@@ -44,7 +44,7 @@ class UserViewSet(APIView):
                 user = form.save()
                 user.changeState()
                 response = requests.post(f"{PRELINK}/login/",
-                                         data={'username': body['email'], 'password': body['password1']})
+                                         data={'username': body['email'], 'password': body['password1']}, verify=IN_PROD)
 
                 if response.status_code == 200:
                     user.changeState(action='login')
@@ -62,15 +62,18 @@ class UserViewSet(APIView):
                 errors = {'email': emailErrors, 'password': passwordErrors}
                 return Response(errors, status=status.HTTP_400_BAD_REQUEST)
         except KeyError:
-            response = requests.post(f"{PRELINK}/login/",
-                                     data={'username': body['email'], 'password': body['password']})
-            if response.status_code == 200:
-                token = json.loads(response.content)["token"]
-                user_id = Token.objects.get(key=token).user_id
-                user = ChatUser.objects.get(id=user_id)
-                user.changeState(action='login')
-                return Response(json.loads(response.content), status=status.HTTP_200_OK)
-            return Response(response, status=status.HTTP_400_BAD_REQUEST)
+            try:
+                response = requests.post(f"{PRELINK}/login/",
+                                         data={'username': body['email'], 'password': body['password']}, verify=IN_PROD)
+                if response.status_code == 200:
+                    token = json.loads(response.content)["token"]
+                    user_id = Token.objects.get(key=token).user_id
+                    user = ChatUser.objects.get(id=user_id)
+                    user.changeState(action='login')
+                    return Response(json.loads(response.content), status=status.HTTP_200_OK)
+                return Response(response, status=status.HTTP_400_BAD_REQUEST)
+            except:
+                return Response(response, status=status.HTTP_404_NOT_FOUND)
 
     def put(self, request):
             raw_token = request.headers['Authorization'].split(" ")[1]
