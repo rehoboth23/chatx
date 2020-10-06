@@ -31,6 +31,23 @@ http://rehoboth23.pythonanywhere.com/
 **daphne -e ssl:8000:privateKey=/[Path to site packages]/sslserver/certs/development.crt:certKey=/[Path to site packages]/sslserver/certs/development.key bant.asgi:application**. 
 
 
+# To test front end
+!! ensure that you are in the bant folder
+**npm create-react-app** [app name]  
+**cd app name**  
+**rm-r src**   
+**cd ../chatx**   
+**copy the src folder**  
+**cd ../app name**  
+**paste the src folder** 
+rename app name to chatx
+
+
+# final steps
+in router in chatx/src 
+
+
+
 
 
 
