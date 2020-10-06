@@ -14,6 +14,7 @@ http://rehoboth23.pythonanywhere.com/
 **mkdir** src    
 **cd** src  
 **git clone** [this repository link]  
+**cd** chatx/bant   
 **pip install  -r requorements.txt**   
 **python manage.py makemigrations**  
 **python manage.py migrate**   
