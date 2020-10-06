@@ -148,12 +148,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 # S3 BUCKETS CONFIG
-# export AWS_ACCESS_KEY_ID=AKIAVJRAVJHRH347TIDA
-# export AWS_SECRET_ACCESS_KEY=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
-AWS_ACCESS_KEY_ID='AKIAVJRAVJHRH347TIDA'
-AWS_SECRET_ACCESS_KEY='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'
-# AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-# AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+
+# set up s3 bucket variable in environment
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME = "test-mykc-bucket"
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
