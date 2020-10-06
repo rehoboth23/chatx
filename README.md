@@ -44,8 +44,8 @@ rename app name to chatx
 
 
 # final steps
-in router in chatx/src, set the enpoint value of the socket to the second option and comment out the first
-in 
+in router in chatx/src, set the enpoint value of the socket to the second option and comment out the first i.e. set the endpoint or url to localhost
+do the same for all js file of comonents and store
 
 
 
