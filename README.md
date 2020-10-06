@@ -44,7 +44,8 @@ rename app name to chatx
 
 
 # final steps
-in router in chatx/src 
+in router in chatx/src, set the enpoint value of the socket to the second option and comment out the first
+in 
 
 
 
