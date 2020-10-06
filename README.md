@@ -47,6 +47,8 @@ rename app name to chatx
 in router in chatx/src, set the enpoint value of the socket to the second option and comment out the first i.e. set the endpoint or url to localhost
 do the same for all js file of comonents and store
 
+in consumers.py set PRE_LINK to point to localhosy. 
+in setting.py set host to 127.0.0.1. 
 
 
 
