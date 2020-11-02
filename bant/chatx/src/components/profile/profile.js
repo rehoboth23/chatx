@@ -24,8 +24,8 @@ class Profile extends Component {
             changing: false,
         }
         this.dev = false
-        // this.user_url = 'http://localhost:8000/authenticate/'
-        this.user_url = `/authenticate/`
+        this.user_url = 'http://localhost:8000/authenticate/'
+        // this.user_url = `/authenticate/`
         this._isMounted = false
         this.setView = this.setView.bind(this)
         this.onChange = this.onChange.bind(this)
