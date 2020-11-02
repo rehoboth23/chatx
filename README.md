@@ -21,34 +21,36 @@ http://rehoboth23.pythonanywhere.com/
   
 
 # Test Server
-!!Note an AWS S3 bucket needs to be set up to test the backend. This is because the static files are served from the S3 bucket using boto3   
+**Note** An AWS S3 bucket needs to be set up to test the backend. This is because the static files are served from the S3 bucket using boto3  
+**Alternatively**, You can reconfigure the static directories IN setting.py file to point to a static folder. It should point to the "public/static" directory of the react app and anyother necessary static directories.
+
 # Without SSL
 
 **python manage.py runserver**
-
-# With SSL
-**python manage.py runsslserver [port]**
-**daphne -e ssl:8000:privateKey=/[Path to site packages]/sslserver/certs/development.crt:certKey=/[Path to site packages]/sslserver/certs/development.key bant.asgi:application**. 
-
 
 # To test front end
 !! ensure that you are in the bant folder
 **npm create-react-app** [app name]  
 **cd app name**  
-**rm-r src**   
+**rm-r src** 
 **cd ../chatx**   
-**copy the src folder**  
+**copy the src folder**
 **cd ../app name**  
-**paste the src folder** 
-rename app name to chatx
-
+**paste the src folder**
+**rename app name to chatx**  
+**Note** The endpoint link for the router (chatx/src/router.js) has to be reconfigured to **`${proc}//localhost:8000/ws/`**  
+**Note** The target link for authentication (chatx/store/actions/auth.js) has to be changed to **`http://localhost:8000/authenticate/`**  
+Run **npm start** in a seperate terminal window  
 
 # final steps
-in router in chatx/src, set the enpoint value of the socket to the second option and comment out the first i.e. set the endpoint or url to localhost
-do the same for all js file of comonents and store
+in consumers.py set PRE_LINK to point to localhosy   
+in setting.py set host to 127.0.0.1  
 
-in consumers.py set PRE_LINK to point to localhosy. 
-in setting.py set host to 127.0.0.1. 
+
+# With SSL
+**python manage.py runsslserver [port]**
+**daphne -e ssl:8000:privateKey=/[Path to site packages]/sslserver/certs/development.crt:certKey=/[Path to site packages]/sslserver/certs/development.key bant.asgi:application**
+**Note** the front endpoint link for the router has to be reconfigured to **`${proc}//${loc.host}:8001/ws/`**. Run **npm run build** in a seperate terminal to build the static files. run **python manage.py collectstatic**  
 
 
 
