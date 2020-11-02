@@ -11,8 +11,8 @@ function SearchResult(props){
         <>
             <a href={data['email']} className="row conversation" id={data['email']} onClick={selectResult}>
                 <div className="toon-holder">
-                    <img src={data['pic_url']} alt="toon-img" className="toon rounded-circle"/>
-                    {/*<img src={`http://localhost:8000/${data['pic_url']}`} alt="toon-img" className="toon rounded-circle"/>*/}
+                    {/*<img src={data['pic_url']} alt="toon-img" className="toon rounded-circle"/>*/}
+                    <img src={`http://localhost:8000/${data['pic_url']}`} alt="toon-img" className="toon rounded-circle"/>
                 </div>
                 <div className="message-info-holder">
                     <p className="message-info">
