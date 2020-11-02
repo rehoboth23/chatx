@@ -71,7 +71,6 @@ class UserViewSet(APIView):
                     token = data["token"]
                     tokens = Token.objects.all()
                     for t_obj in tokens:
-                        print(t_obj.key, token)
                         if t_obj.key == token:
                             user = ChatUser.objects.get(id=t_obj.user_id)
                             user.changeState(action='login')
