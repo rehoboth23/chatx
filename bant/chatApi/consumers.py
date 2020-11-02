@@ -5,7 +5,7 @@ from rest_framework.authtoken.models import Token
 from .models import ChatUser, Chat, ChatRoom
 
 
-PRELINK = "https://localhost:8000"
+PRELINK = "http://localhost:8000"
 # PRELINK = "https://www.rehoboth.link"
 IN_PROD = False
 
