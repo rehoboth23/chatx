@@ -18,6 +18,9 @@ http://rehoboth23.pythonanywhere.com/
 **pip install  -r requorements.txt**   
 **python manage.py makemigrations**  
 **python manage.py migrate**
+
+# final steps
+in setting.py set host to 127.0.0.1
 In comsumers.py set PRE_LINK = **"https://localhost:8000"** and IN_PROD = **False**
 
 # API
@@ -30,13 +33,14 @@ chat fields for API call:
 create: **Needs Authentication** User, Receiver, memo  
 get: **Needs Authentication** can only be done using a request with kwarg ["roomName"] for the room hosting the chat. e.g "<link>/_user1_user2"  
 
-# Test Server
-**Note** An AWS S3 bucket needs to be set up to test the backend. This is because the static files are served from the S3 bucket using boto3  
-**Alternatively**, You can reconfigure the static directories IN setting.py file to point to a static folder. It should point to the "public/static" directory of the react app and anyother necessary static directories.
-
-# Without SSL
-
+# Run Without SSL
 **python manage.py runserver**
+
+# Run With SSL
+**Note** the front endpoint link for the router has to be reconfigured to **`${proc}//${loc.host}:8001/ws/`**. Run **npm run build** in a seperate terminal to build the static files. run **python manage.py collectstatic**. 
+**python manage.py runsslserver [port]**
+OR
+**daphne -e ssl:8000:privateKey=/[Path to site packages]/sslserver/certs/development.crt:certKey=/[Path to site packages]/sslserver/certs/development.key bant.asgi:application**
 
 # To test front end
 **I would recommend studying the backend and then creating a custom front end to fit the APIs**
@@ -51,17 +55,11 @@ get: **Needs Authentication** can only be done using a request with kwarg ["room
 **rename app name to chatx**  
 **Note** The endpoint link for the router (chatx/src/router.js) has to be reconfigured to **`${proc}//localhost:8000/ws/`**  
 **Note** The target link for authentication (chatx/store/actions/auth.js) has to be changed to **`http://localhost:8000/authenticate/`**  
-Run **npm start** in a seperate terminal window  
+Run **npm start** in a seperate terminal window 
 
-# final steps
-in consumers.py set PRE_LINK to point to localhosy   
-in setting.py set host to 127.0.0.1  
-
-
-# With SSL
-**python manage.py runsslserver [port]**
-**daphne -e ssl:8000:privateKey=/[Path to site packages]/sslserver/certs/development.crt:certKey=/[Path to site packages]/sslserver/certs/development.key bant.asgi:application**
-**Note** the front endpoint link for the router has to be reconfigured to **`${proc}//${loc.host}:8001/ws/`**. Run **npm run build** in a seperate terminal to build the static files. run **python manage.py collectstatic**  
+# Test Server STATIC FILES FOR DEPLOYMENT
+**Note** An AWS S3 bucket needs to be set up to test the backend. This is because the static files are served from the S3 bucket using boto3  
+**Alternatively**, You can reconfigure the static directories IN setting.py file to point to a static folder. It should point to the "public/static" directory of the react app and anyother necessary static directories.
 
 
 
