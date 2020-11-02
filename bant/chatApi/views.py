@@ -46,9 +46,10 @@ class UserViewSet(APIView):
                 response = requests.post(f"{PRELINK}/login/",
                                          data={'username': body['email'], 'password': body['password1']}, verify=IN_PROD)
                 if response.status_code == 200:
+                    if IN_PROD:
+                        data = json.loads(response.content)
+                        Token.objects.create(user=user, key=data["token"])
                     user.changeState(action='login')
-                    data = json.loads(response.content)
-                    Token.objects.create(user=user, key=data["token"])
                     return Response(json.loads(response.content), status=status.HTTP_200_OK)
                 return Response(response, status=status.HTTP_400_BAD_REQUEST)
             else:
@@ -75,7 +76,7 @@ class UserViewSet(APIView):
                             user = ChatUser.objects.get(id=t_obj.user_id)
                             user.changeState(action='login')
                             return Response(json.loads(response.content), status=status.HTTP_200_OK)
-                return Response({}, status=status.HTTP_404_NOT_FOUND)
+                return Response(response, status=status.HTTP_404_NOT_FOUND)
 
     def put(self, request):
             raw_token = request.headers['Authorization'].split(" ")[1]
