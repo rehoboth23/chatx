@@ -5,9 +5,9 @@ from rest_framework.authtoken.models import Token
 from .models import ChatUser, Chat, ChatRoom
 
 
-# PRELINK = "https://localhost:8001"
-PRELINK = "https://www.rehoboth.link"
-IN_PROD = True
+PRELINK = "https://localhost:8000"
+# PRELINK = "https://www.rehoboth.link"
+IN_PROD = False
 
 class MessageConsumer(AsyncConsumer):
     async def websocket_connect(self, event):
