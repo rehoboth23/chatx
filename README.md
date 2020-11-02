@@ -17,8 +17,18 @@ http://rehoboth23.pythonanywhere.com/
 **cd** chatx/bant   
 **pip install  -r requorements.txt**   
 **python manage.py makemigrations**  
-**python manage.py migrate**   
-  
+**python manage.py migrate**
+In comsumers.py set PRE_LINK = **"https://localhost:8000"** and IN_PROD = **False**
+
+# API
+**The backend can be tested independently using proper api calls**  
+authentication fields for API call:   
+create: name, email, password1, password2  
+get: email, password  
+
+chat fields for API call:  
+create: **Needs Authentication** User, Receiver, memo  
+get: **Needs Authentication** can only be done using a request with kwarg ["roomName"] for the room hosting the chat. e.g "<link>/_user1_user2"  
 
 # Test Server
 **Note** An AWS S3 bucket needs to be set up to test the backend. This is because the static files are served from the S3 bucket using boto3  
@@ -29,6 +39,7 @@ http://rehoboth23.pythonanywhere.com/
 **python manage.py runserver**
 
 # To test front end
+**I would recommend studying the backend and then creating a custom front end to fit the APIs**
 !! ensure that you are in the bant folder
 **npm create-react-app** [app name]  
 **cd app name**  
