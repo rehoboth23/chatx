@@ -45,9 +45,10 @@ class UserViewSet(APIView):
                 user.changeState()
                 response = requests.post(f"{PRELINK}/login/",
                                          data={'username': body['email'], 'password': body['password1']}, verify=IN_PROD)
-
                 if response.status_code == 200:
                     user.changeState(action='login')
+                    data = json.loads(response.content)
+                    Token.objects.create(user=user, key=data["token"])
                     return Response(json.loads(response.content), status=status.HTTP_200_OK)
                 return Response(response, status=status.HTTP_400_BAD_REQUEST)
             else:
@@ -62,18 +63,19 @@ class UserViewSet(APIView):
                 errors = {'email': emailErrors, 'password': passwordErrors}
                 return Response(errors, status=status.HTTP_400_BAD_REQUEST)
         except KeyError:
-            try:
                 response = requests.post(f"{PRELINK}/login/",
                                          data={'username': body['email'], 'password': body['password']}, verify=IN_PROD)
                 if response.status_code == 200:
-                    token = json.loads(response.content)["token"]
-                    user_id = Token.objects.get(key=token).user_id
-                    user = ChatUser.objects.get(id=user_id)
-                    user.changeState(action='login')
-                    return Response(json.loads(response.content), status=status.HTTP_200_OK)
-                return Response(response, status=status.HTTP_400_BAD_REQUEST)
-            except:
-                return Response(response, status=status.HTTP_404_NOT_FOUND)
+                    data = json.loads(response.content)
+                    token = data["token"]
+                    tokens = Token.objects.all()
+                    for t_obj in tokens:
+                        print(t_obj.key, token)
+                        if t_obj.key == token:
+                            user = ChatUser.objects.get(id=t_obj.user_id)
+                            user.changeState(action='login')
+                            return Response(json.loads(response.content), status=status.HTTP_200_OK)
+                return Response({}, status=status.HTTP_404_NOT_FOUND)
 
     def put(self, request):
             raw_token = request.headers['Authorization'].split(" ")[1]
