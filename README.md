@@ -4,7 +4,7 @@ The backend is built using Django-Rest framework, and the sockets are integrated
 The logical programming in the backend takes advantage of different data-structures such as priority heaps and search trees.
 
 #
-http://rehoboth23.pythonanywhere.com/
+https://rehoboth23.pythonanywhere.com/project/3
 #
 
 # Set Up The BackEnd
