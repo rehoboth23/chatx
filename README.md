@@ -37,13 +37,6 @@ get: **Needs Authentication** can only be done using a request with kwarg ["room
 In consumers.py ensure **IN_PROD = False**   
 **python manage.py runserver**
 
-# Run The Backend With SSL
-In consumers.py  ensure **IN_PROD = True **      
-**Note** the front endpoint link for the router has to be reconfigured to **`${proc}//${loc.host}:8001/ws/`**. Run **npm run build** in a seperate terminal to build the static files. run **python manage.py collectstatic**. 
-**python manage.py runsslserver [port]**  
-OR  
-**daphne -e ssl:8000:privateKey=/[Path to site packages]/sslserver/certs/development.crt:certKey=/[Path to site packages]/sslserver/certs/development.key bant.asgi:application**
-
 # To test a local instance of front end in develpoment  
 **I would recommend studying the backend and then creating a custom front end to fit the APIs**
 !! ensure that you are in the bant folder
