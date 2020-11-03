@@ -20,7 +20,7 @@ http://rehoboth23.pythonanywhere.com/
 **python manage.py migrate**
 
 # final steps
-in setting.py set host to 127.0.0.1
+in setting.py set host to 127.0.0.1  
 In comsumers.py set PRE_LINK = **"https://localhost:8000"**      
 
 # API
