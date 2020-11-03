@@ -7,7 +7,7 @@ The logical programming in the backend takes advantage of different data-structu
 http://rehoboth23.pythonanywhere.com/
 #
 
-# Set Up BackEnd
+# Set Up The BackEnd
 **virtualenv** [environment name]  
 **cd** [environment name]  
 **source bin/activate**
@@ -33,16 +33,16 @@ chat fields for API call:
 create: **Needs Authentication** User, Receiver, memo  
 get: **Needs Authentication** can only be done using a request with kwarg ["roomName"] for the room hosting the chat. e.g "<link>/_user1_user2"  
 
-# Run Without SSL
+# Run The Backend Without SSL
 **python manage.py runserver**
 
-# Run With SSL
+# Run The Backend With SSL
 **Note** the front endpoint link for the router has to be reconfigured to **`${proc}//${loc.host}:8001/ws/`**. Run **npm run build** in a seperate terminal to build the static files. run **python manage.py collectstatic**. 
 **python manage.py runsslserver [port]**  
 OR  
 **daphne -e ssl:8000:privateKey=/[Path to site packages]/sslserver/certs/development.crt:certKey=/[Path to site packages]/sslserver/certs/development.key bant.asgi:application**
 
-# To test front end
+# To test a local instance of front end in develpoment  
 **I would recommend studying the backend and then creating a custom front end to fit the APIs**
 !! ensure that you are in the bant folder
 **npm create-react-app** [app name]  
@@ -57,7 +57,7 @@ OR
 **Note** The target link for authentication (chatx/store/actions/auth.js) has to be changed to **`http://localhost:8000/authenticate/`**  
 Run **npm start** in a seperate terminal window 
 
-# Test Server STATIC FILES FOR DEPLOYMENT
+# Test The Server STATIC FILES FOR DEPLOYMENT
 **Note** An AWS S3 bucket needs to be set up to test the backend. This is because the static files are served from the S3 bucket using boto3  
 **Alternatively**, You can reconfigure the static directories IN setting.py file to point to a static folder. It should point to the "public/static" directory of the react app and anyother necessary static directories.
 
