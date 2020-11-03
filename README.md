@@ -21,7 +21,7 @@ http://rehoboth23.pythonanywhere.com/
 
 # final steps
 in setting.py set host to 127.0.0.1
-In comsumers.py set PRE_LINK = **"https://localhost:8000"** and IN_PROD = **False**
+In comsumers.py set PRE_LINK = **"https://localhost:8000"**      
 
 # API
 **The backend can be tested independently using proper api calls**  
@@ -34,9 +34,11 @@ create: **Needs Authentication** User, Receiver, memo
 get: **Needs Authentication** can only be done using a request with kwarg ["roomName"] for the room hosting the chat. e.g "<link>/_user1_user2"  
 
 # Run The Backend Without SSL
+In consumers.py ensure **IN_PROD = False**   
 **python manage.py runserver**
 
 # Run The Backend With SSL
+In consumers.py  ensure **IN_PROD = True **      
 **Note** the front endpoint link for the router has to be reconfigured to **`${proc}//${loc.host}:8001/ws/`**. Run **npm run build** in a seperate terminal to build the static files. run **python manage.py collectstatic**. 
 **python manage.py runsslserver [port]**  
 OR  
