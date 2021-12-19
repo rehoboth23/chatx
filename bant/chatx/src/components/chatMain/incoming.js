@@ -3,7 +3,7 @@ const date_handler = require("../../dateHandler")
 
 function Outgoing(props){
     const data = props.props
-    const picurl = `http://localhost:8000${data['pic_url']}`
+    const picurl = `https://test-mykc-bucket.s3.us-east-2.amazonaws.com/static/${data['pic_url']}`
     // const picurl = `${data['pic_url']}`
     return(
         <div className="row outgoing msg-holder mb-2 justify-content-end ml-auto">

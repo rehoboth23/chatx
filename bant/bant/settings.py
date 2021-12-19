@@ -94,8 +94,8 @@ TEMPLATES = [
     },
 ]
 
-# CSRF_COOKIE_SECURE = True
-# CSRF_TRUSTED_ORIGINS = ["*"]
+CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = ["*", "https://thechatx.net", "http://thechatx.net",]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -186,5 +186,7 @@ CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
     "http://localhost:8000",
+    "https://thechatx.net",
+    "http://thechatx.net",
 ]
 #django.setup()

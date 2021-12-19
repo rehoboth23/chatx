@@ -27,12 +27,12 @@ class ChatBox extends Component {
             sub: true,
         }
         const loc = window.location
-        this.rooms_url= 'http://localhost:8000/rooms/'
-        this.chats_url = `http://localhost:8000/chats/`
-        this.user_url= 'http://localhost:8000/authenticate/'
-        // this.user_url = `/authenticate/`
-        // this.rooms_url = `/rooms/`
-        // this.chats_url = `/chats/`
+        // this.rooms_url= 'http://localhost:8000/rooms/'
+        // this.chats_url = `http://localhost:8000/chats/`
+        // this.user_url= 'http://localhost:8000/authenticate/'
+        this.user_url = `/authenticate/`
+        this.rooms_url = `/rooms/`
+        this.chats_url = `/chats/`
         this._isMounted = false
         this.logout = this.logout.bind(this)
         this.clear = this.clear.bind(this)

@@ -34,20 +34,20 @@ class MessageConsumer(AsyncWebsocketConsumer):
                 response = await self.update_profile(token, context)
                 object_res = json.loads(response.content)
                 object_res['custom_type'] = 'profile'
-                await self.send({
+                await self.send(text_data=json.dumps({
                     "type": "websocket.send",
                     "text": json.dumps(object_res)
-                })
+                }))
             except:
                 pass
 
         if info and info["type"] == "search":
             matches = await self.get_matches(info['user'], info['key'])
             search_res = {'custom_type': 'search', 'matches': matches}
-            await self.send({
+            await self.send(text_data=json.dumps({
                 "type": "websocket.send",
                 "text": json.dumps(search_res)
-            })
+            }))
 
         if info and info["type"] == "sub":
             room_names = [await self.get_room_name(name) for name in info['room_names']]
@@ -122,10 +122,10 @@ class MessageConsumer(AsyncWebsocketConsumer):
             )
 
     async def msg(self, event):
-        await self.send({
+        await self.send(text_data=json.dumps({
             "type": "websocket.send",
             "text": event["text"]
-        })
+        }))
 
     async def disconnect(self, close_code):
         print("Chat Rest", close_code)
