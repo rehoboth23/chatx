@@ -6,7 +6,7 @@ from .models import ChatUser, Chat, ChatRoom
 
 
 # PRELINK = "http://localhost:8000"
-PRELINK = "https://www.rehoboth.link"
+PRELINK = "https://www.thechatx.net"
 IN_PROD = False
 
 class MessageConsumer(AsyncWebsocketConsumer):

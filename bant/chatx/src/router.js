@@ -36,7 +36,7 @@ const mapStateToProps = state => {
     const loc = window.location
     const proc = loc.protocol === "http:"? "ws:": "wss:"
     // let endpoint = `${proc}//${loc.host}:8001/ws/`
-    let endpoint = `${proc}//localhost:8000/ws/`
+    let endpoint = `${proc}//localhost/ws/`
     let socket = new ReconnectingWebSocket(endpoint)
     return {
         socket: socket
