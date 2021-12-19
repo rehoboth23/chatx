@@ -95,7 +95,7 @@ TEMPLATES = [
 ]
 
 CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ["*", "https://thechatx.net", "http://thechatx.net",]
+CSRF_TRUSTED_ORIGINS = ["https://thechatx.net", "http://thechatx.net",]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

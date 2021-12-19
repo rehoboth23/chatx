@@ -3,7 +3,7 @@ const date_handler = require("../../dateHandler")
 
 function Conversation(props){
     const data = props.props
-    const picurl = `https://test-mykc-bucket.s3.us-east-2.amazonaws.com/static/${data['pic_url']}`
+    const picurl = `${data['pic_url']}`
     // const picurl = `${data['pic_url']}`
     const statusStyle = status => {
         if(!status){
