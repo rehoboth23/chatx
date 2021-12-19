@@ -1,24 +1,22 @@
 import json, requests
-from channels.consumer import AsyncConsumer
+from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from rest_framework.authtoken.models import Token
 from .models import ChatUser, Chat, ChatRoom
 
 
-PRELINK = "http://localhost:8000"
-# PRELINK = "https://www.rehoboth.link"
+# PRELINK = "http://localhost:8000"
+PRELINK = "https://www.rehoboth.link"
 IN_PROD = False
 
-class MessageConsumer(AsyncConsumer):
-    async def websocket_connect(self, event):
+class MessageConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
         self.email = ""
         self.channel_groups_names = {}
-        await self.send({
-            "type": "websocket.accept",
-        })
+        await self.accept()
 
-    async def websocket_receive(self, event):
-        info = json.loads(event["text"]) or None
+    async def receive(self, text_data):
+        info = json.loads(text_data) or None
         if info and info['type'] == "profile":
             try:
                 data = info['data']
@@ -129,8 +127,8 @@ class MessageConsumer(AsyncConsumer):
             "text": event["text"]
         })
 
-    async def websocket_disconnect(self, event):
-        print("Chat Rest", event)
+    async def disconnect(self, close_code):
+        print("Chat Rest", close_code)
 
     async def parse_name(self, email):
         text = email.replace("@", "_").replace(".", "_")

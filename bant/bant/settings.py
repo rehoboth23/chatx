@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import django
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bant.settings")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -55,9 +56,8 @@ INSTALLED_APPS = [
     # react
     'corsheaders',
 
-    #simulate ssl
-    "sslserver",
 ]
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -150,14 +150,13 @@ USE_TZ = True
 # S3 BUCKETS CONFIG
 
 # set up s3 bucket variable in environment
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
-AWS_STORAGE_BUCKET_NAME = "your-bucket-name"
+AWS_ACCESS_KEY_ID = "AKIAVJRAVJHRPKYHLD5A"
+AWS_SECRET_ACCESS_KEY = "hRR5Prj1HitzlZqhb9SPO6SU/rWe0gLE80LgoMlU"
+AWS_STORAGE_BUCKET_NAME = "test-mykc-bucket"
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 AWS_LOCATION = 'static'
-
-AWS_S3_REGION_NAME = 'your-bucket-region'  # change to your bucket region
+AWS_S3_REGION_NAME = 'us-east-2'  # change to your bucket region
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
@@ -178,8 +177,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            # "hosts": [("127.0.0.1", 6379)],
-            "hosts": [("0.0.0.0", 6379)],
+            "hosts": [("localhost", 6379)],
         },
     },
 }
@@ -189,3 +187,4 @@ CORS_ORIGIN_WHITELIST = [
     "http://127.0.0.1:8000",
     "http://localhost:8000",
 ]
+#django.setup()

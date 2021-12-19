@@ -1,28 +1,15 @@
-from django.conf.urls import url
-from channels.routing import ProtocolTypeRouter, URLRouter
+import os
 from channels.auth import AuthMiddlewareStack
-from channels.security.websocket import AllowedHostsOriginValidator
-from chatApi import routing
-from chatApi.consumers import MessageConsumer
+from channels.routing import ProtocolTypeRouter, URLRouter
+from django.core.asgi import get_asgi_application
+import django
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bant.settings")
+django.setup()
+import chatApi.routing
 
-# application = ProtocolTypeRouter({
-#
-#     # WebSocket chat handler
-#     "websocket": AllowedHostsOriginValidator(
-#         AuthMiddlewareStack(
-#                 URLRouter([
-#                     url('', MessageConsumer)
-#                 ]
-#             )
-#         )
-#     )
-# })
-#
 application = ProtocolTypeRouter({
-    # (http->django views is added by default)
-    'websocket': AuthMiddlewareStack(
-        URLRouter(
-            routing.websocket_urlpatterns
-        )
-    ),
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(
+        URLRouter(chatApi.routing.websocket_urlpatterns)
+        ),
 })

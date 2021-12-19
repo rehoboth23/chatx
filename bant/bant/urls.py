@@ -14,10 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import re_path, path, include
 from rest_framework.authtoken import views
 from .settings import MEDIA_ROOT, MEDIA_URL, STATICFILES_DIRS, STATIC_URL, STATIC_ROOT, DEBUG
 from django.views.generic import TemplateView
@@ -31,7 +30,7 @@ urlpatterns = [
     path('chat/', TemplateView.as_view(template_name="index.html")),
     path('auth/', TemplateView.as_view(template_name="index.html")),
     path('profile/', TemplateView.as_view(template_name="index.html")),
-    url(r'^rest-auth/', include('rest_auth.urls')),
+    #re_path(r'^rest-auth/', include('rest_auth.urls')),
     path("login/", views.obtain_auth_token, name="login-token"),
 ]
 

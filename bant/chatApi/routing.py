@@ -1,6 +1,6 @@
-from django.conf.urls import url
 from .consumers import MessageConsumer
+from django.urls import re_path
 
 websocket_urlpatterns = [
-    url(r'^ws/', MessageConsumer),
+    re_path(r'^ws', MessageConsumer.as_asgi()),
 ]
