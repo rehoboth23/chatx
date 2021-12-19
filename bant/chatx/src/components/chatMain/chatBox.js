@@ -293,9 +293,8 @@ class ChatBox extends Component {
         }
 
         this.props.socket.onmessage = e => {
-            const data = JSON.parse(e.data)
-            console.log(e.data)
-            console.log(data)
+            const message = JSON.parse(e.data)
+            const data = JSON.parse(message.text)
             const custom_type = data["custom_type"]
             if (custom_type === "message"){
                 const room_name = data["residentRoom"]
